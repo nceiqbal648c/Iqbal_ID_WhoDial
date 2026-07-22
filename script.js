@@ -16,15 +16,15 @@ async function searchNumber() {
     resTag.innerText = "Tag: Fetching from server...";
 
     try {
-        // আমাদের লোকাল ব্যাকএন্ড সার্ভার কানেকশন
-        const response = await fetch(`http://localhost:3000/search?phone=${encodeURIComponent(phoneNumber)}`);
-        
+        // রেন্ডার লাইভ ব্যাকএন্ড সার্ভার কানেকশন
+        const response = await fetch(`https://iqbal-id-whodial.onrender.com/search?phone=${encodeURIComponent(phoneNumber)}`);
+
         if (!response.ok) {
             throw new Error('API connection failed');
         }
 
         const data = await response.json();
-        
+
         resName.innerText = "Name: " + (data.name || "Unknown Caller");
         resPhone.innerText = "Phone: " + (data.phone || phoneNumber);
         resTag.innerText = "Tag: " + (data.tag || "Safe / Verified");
