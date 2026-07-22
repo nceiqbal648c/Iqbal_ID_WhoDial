@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iqbal ID WhoDial</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+</head>
+<body>
+    <div class="container">
+        <h2>🔍 Iqbal ID WhoDial</h2>
+        <p>Search any number to find details</p>
+        
+        <div class="search-box">
+            <input type="tel" id="phoneNumber" placeholder="Enter phone number..." />
+            <button onclick="searchNumber()">Search</button>
+        </div>
+
+        <div id="resultCard" class="result-card hidden">
+            <h3 id="resName">Name: Not Found</h3>
+            <p id="resPhone">Phone: --</p>
+            <p id="resTag">Tag: --</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
