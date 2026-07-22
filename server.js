@@ -3,22 +3,31 @@ const path = require('path');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// সঠিক পাথ কনফিগারেশন
 app.use(express.static(path.join(__dirname)));
+app.use(express.json());
+
+// রিয়েল API ডাটাবেস কানেকশনের জায়গা (পরে এখানে ডাটাবেস বা থার্ড-পার্টি API যুক্ত করা হবে)
 
 app.get('/search', (req, res) => {
-    const phone = req.query.phone;
+    const phoneNumber = req.query.phone;
 
-    if (phone === "+8801929979235") {
+    if (!phoneNumber) {
+        return res.status(400).json({ success: false, message: 'Phone number is required' });
+    }
+
+    // TODO: পরবর্তীতে এখানে রিয়েল ডাটাবেস বা API কুয়েরি বসানো হবে
+    if (phoneNumber.includes("8801929979235")) {
         res.json({
-            name: "Iqbal Ahmed",
-            phone: phone,
-            tag: "Verified Creator 👑"
+            success: true,
+            name: "Iqbal Ahmed (Boss 👑)",
+            phone: phoneNumber,
+            tag: "Project Director"
         });
     } else {
         res.json({
+            success: true,
             name: "Unknown Caller",
-            phone: phone,
+            phone: phoneNumber,
             tag: "Unverified Number"
         });
     }
