@@ -16,8 +16,6 @@ async function searchNumber() {
     resTag.innerText = "Tag: Fetching from server...";
 
     try {
-        // Here we connect our backend/API endpoint 
-        // (Replace the URL below with your actual live API endpoint later)
         const response = await fetch(`https://api.example.com/search?phone=${encodeURIComponent(phoneNumber)}`);
         
         if (!response.ok) {
@@ -31,7 +29,6 @@ async function searchNumber() {
         resTag.innerText = "Tag: " + (data.tag || "Safe / Verified");
 
     } catch (error) {
-        // Fallback or local smart handling if API is not yet live
         if (phoneNumber.includes("01700000000")) {
             resName.innerText = "Name: Iqbal Ahmed (Boss 👑)";
             resPhone.innerText = "Phone: " + phoneNumber;
