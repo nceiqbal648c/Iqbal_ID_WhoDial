@@ -16,7 +16,8 @@ async function searchNumber() {
     resTag.innerText = "Tag: Fetching from server...";
 
     try {
-        const response = await fetch(`https://api.example.com/search?phone=${encodeURIComponent(phoneNumber)}`);
+        // আমাদের লোকাল ব্যাকএন্ড সার্ভার কানেকশন
+        const response = await fetch(`http://localhost:3000/search?phone=${encodeURIComponent(phoneNumber)}`);
         
         if (!response.ok) {
             throw new Error('API connection failed');
@@ -29,12 +30,13 @@ async function searchNumber() {
         resTag.innerText = "Tag: " + (data.tag || "Safe / Verified");
 
     } catch (error) {
+        // ব্যাকএন্ড অফলাইন থাকলে ফলব্যাক হ্যান্ডলিং
         if (phoneNumber.includes("01700000000")) {
             resName.innerText = "Name: Iqbal Ahmed (Boss 👑)";
             resPhone.innerText = "Phone: " + phoneNumber;
             resTag.innerText = "Tag: Project Director";
         } else {
-            resName.innerText = "Name: API Offline / Local Mode";
+            resName.innerText = "Name: Server Offline / Local Mode";
             resPhone.innerText = "Phone: " + phoneNumber;
             resTag.innerText = "Tag: Unverified Number";
         }
